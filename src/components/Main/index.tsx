@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { Container } from "./styles"
+import { Container, Section } from "./styles"
 
 interface MainProps {
   children?: ReactNode;
@@ -8,11 +8,11 @@ interface MainProps {
 
 function Main({children}: MainProps) {
   return (
-    <section>
+    <Section>
       <Container data-testid="main">
         {children}
       </Container>
-    </section>
+    </Section>
   )
 }
 
