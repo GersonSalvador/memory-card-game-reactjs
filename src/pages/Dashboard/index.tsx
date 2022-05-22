@@ -1,12 +1,11 @@
-import { ReactNode } from "react"
-interface DashboardProps {
-  children?: ReactNode;
-};
+import { Header } from "../../components"
 
-export default function Dashboard({children}: DashboardProps) {
+export default function Dashboard() {
   return (
     <div data-testid="dashboard">
-      {children}
+      <Header>
+        Memory Card Game
+      </Header>
     </div>
   )
 }
