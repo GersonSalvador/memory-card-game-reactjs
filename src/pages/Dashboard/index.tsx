@@ -1,4 +1,12 @@
-import { Header } from "../../components"
+import { Header, Main, Ul } from "../../components"
+import { ILevels } from "../../interfaces"
+
+const levels: ILevels[] = [
+  {name: 'Easy',pairs: 6},
+  {name: 'Normal', pairs: 10},
+  {name: 'Hard', pairs: 15},
+  {name: 'Master', pairs: 25},
+]
 
 export default function Dashboard() {
   return (
@@ -6,6 +14,9 @@ export default function Dashboard() {
       <Header>
         Memory Card Game
       </Header>
+      <Main>
+        <Ul levels={levels}/>
+      </Main>
     </div>
   )
 }
