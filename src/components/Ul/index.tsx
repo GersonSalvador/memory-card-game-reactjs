@@ -1,10 +1,7 @@
 import { Container } from "./styles"
-
+import {ILevels} from "../../interfaces"
 interface UlProps {
-  levels?: {
-    name: string;
-    pairs: number;
-  }[];
+  levels?: ILevels[]
 };
 
 function Ul({levels}: UlProps) {
