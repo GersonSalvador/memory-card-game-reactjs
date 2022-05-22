@@ -1,10 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import Header from './';
 
-function Button(){
-  return <button data-testid="button-test">exemplo</button>
-}
-
 describe('Header component', () => {
 
   it('renders on screen', () => {
@@ -14,9 +10,9 @@ describe('Header component', () => {
   });
 
   it("should render it's children", () => {
-    render(<Header><Button /></Header>);
-    const buttonElement = screen.getByTestId('button-test');
-    expect(buttonElement).toBeInTheDocument();
+    render(<Header>text test</Header>);
+    const buttonElement = screen.getByTestId('header');
+    expect(buttonElement).toHaveTextContent('text test');
   })
   
 })

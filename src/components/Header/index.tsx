@@ -1,13 +1,15 @@
-import { ReactNode } from "react"
+import { Title } from "../"
 
 interface HeaderProps {
-  children?: ReactNode;
+  children?: string;
 };
 
 function Header({children}: HeaderProps) {
   return (
     <div data-testid="header">
-      {children}
+      <Title>
+        {children}
+      </Title>
     </div>
   )
 }
