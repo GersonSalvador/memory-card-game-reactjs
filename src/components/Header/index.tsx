@@ -1,4 +1,5 @@
 import { Title } from "../"
+import { Container } from "./styles"
 
 interface HeaderProps {
   children?: string;
@@ -6,11 +7,11 @@ interface HeaderProps {
 
 function Header({children}: HeaderProps) {
   return (
-    <div data-testid="header">
+    <Container data-testid="header">
       <Title>
         {children}
       </Title>
-    </div>
+    </Container>
   )
 }
 
