@@ -11,8 +11,8 @@ describe('Ul component', () => {
 
   it("should render it's props", () => {
     render(<Ul levels={[{name: 'level one', pairs: 10}]} />);
-    const buttonElement = screen.getByTestId('ul');
-    expect(buttonElement).toHaveTextContent('level one Pairs 10');
+    const buttonElement = screen.getByText('level one');
+    expect(buttonElement).toHaveTextContent('level one');
   })
   
 })

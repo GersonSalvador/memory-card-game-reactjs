@@ -1,5 +1,6 @@
 import { Container } from "./styles"
 import {ILevels} from "../../interfaces"
+import { Li } from "../";
 interface UlProps {
   levels?: ILevels[]
 };
@@ -7,7 +8,9 @@ interface UlProps {
 function Ul({levels}: UlProps) {
   return (
     <Container data-testid="ul">
-      {levels?.map(({name, pairs}, index) => <li key={'li'+index}>{name + ' Pairs ' + pairs}</li>)}
+      {levels?.map((level, index) => (
+        <Li key={'li'+index} level={level} />
+      ))}
     </Container>
   )
 }
