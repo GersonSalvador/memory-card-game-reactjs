@@ -1,7 +1,7 @@
 import Header from "./Header"
 import Title from "./Title"
 import Main from "./Main"
-import Ul from "./Ul"
-import Li from "./Li"
+import Levels from "./Levels"
+import Level from "./Level"
 
-export { Header, Title, Main, Ul, Li }
+export { Header, Title, Main, Levels, Level }

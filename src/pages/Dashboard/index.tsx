@@ -1,4 +1,4 @@
-import { Header, Main, Ul } from "../../components"
+import { Header, Main, Levels } from "../../components"
 import { ILevels } from "../../interfaces"
 
 const levels: ILevels[] = [
@@ -15,7 +15,7 @@ export default function Dashboard() {
         Memory Card Game
       </Header>
       <Main>
-        <Ul levels={levels}/>
+        <Levels levels={levels}/>
       </Main>
     </div>
   )

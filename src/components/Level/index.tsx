@@ -1,11 +1,11 @@
 import {Container, H3, Span} from "./styles";
 import {ILevels} from "../../interfaces"
 
-interface LiProps {
+interface LevelProps {
   level?: ILevels;
 }
 
-function Li({level}: LiProps) {
+function Level({level}: LevelProps) {
   return (
     <Container data-testid="li">
       {level?.name && <H3>{level?.name}</H3>}
@@ -14,4 +14,4 @@ function Li({level}: LiProps) {
   )
 }
 
-export default Li;
+export default Level;

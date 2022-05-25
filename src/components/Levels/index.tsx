@@ -1,18 +1,18 @@
 import { Container } from "./styles"
 import {ILevels} from "../../interfaces"
-import { Li } from "../";
+import { Level } from "../";
 interface UlProps {
   levels?: ILevels[]
 };
 
-function Ul({levels}: UlProps) {
+function Levels({levels}: UlProps) {
   return (
     <Container data-testid="ul">
       {levels?.map((level, index) => (
-        <Li key={'li'+index} level={level} />
+        <Level key={'li'+index} level={level} />
       ))}
     </Container>
   )
 }
 
-export default Ul;
+export default Levels;
