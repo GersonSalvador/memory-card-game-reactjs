@@ -8,11 +8,11 @@ export default createGlobalStyle`
   }
 
   :root{
-    --Purple-1: #5C257F;
-    --Purple-2: #D697FF;
-    --Purple-3: #B84BFF;
-    --Purple-4: #6B4C7F;
-    --Purple-5: #933CCC;
+    --main-1: #5C257F;
+    --main-2: #D697FF;
+    --main-3: #B84BFF;
+    --main-4: #6B4C7F;
+    --main-5: #933CCC;
   }
 
   html,body{
@@ -20,7 +20,7 @@ export default createGlobalStyle`
   }
 
   body{
-    background-color: var(--Purple-1);
+    background-color: var(--main-1);
     font-family: sans-serif;
   }
 `;

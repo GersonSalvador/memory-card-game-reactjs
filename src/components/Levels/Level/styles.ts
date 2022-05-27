@@ -8,7 +8,7 @@ export const Container = styled.li`
   padding: 20px;
   flex-grow: 1;
   color: #fff;
-  border: 1px solid var(--Purple-2);
+  border: 1px solid var(--main-2);
   transition: all 0.8s ease-in;
   display: block;
   text-align: center;
