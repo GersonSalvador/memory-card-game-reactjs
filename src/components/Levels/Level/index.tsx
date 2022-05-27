@@ -1,5 +1,5 @@
 import {Container, H3, Span} from "./styles";
-import {ILevels} from "../../interfaces"
+import {ILevels} from "../../../interfaces"
 
 interface LevelProps {
   level?: ILevels;
