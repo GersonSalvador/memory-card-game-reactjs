@@ -11,9 +11,9 @@ describe('Ul component', () => {
 
   it("should render it's props", () => {
     render(<Counter timing={{hour: 1, minute: 5, second: 55}} />);
-    const hourProp = screen.getByTestId('hour');
-    const minuteProp = screen.getByTestId('minute');
-    const secondProp = screen.getByTestId('second');
+    const hourProp = screen.getByTestId('hour-value');
+    const minuteProp = screen.getByTestId('minute-value');
+    const secondProp = screen.getByTestId('second-value');
     expect(hourProp).toHaveTextContent('1');
     expect(minuteProp).toHaveTextContent('5');
     expect(secondProp).toHaveTextContent('55');
