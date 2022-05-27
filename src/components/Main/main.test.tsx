@@ -11,14 +11,14 @@ describe('Header component', () => {
 
   it('renders on screen', () => {
     render(<Main />);
-    const headerElement = screen.getByTestId('main');
-    expect(headerElement).toBeInTheDocument();
+    const component = screen.getByTestId('main');
+    expect(component).toBeInTheDocument();
   });
 
   it("should render it's children", () => {
     render(<Main><ChildrenComponent /></Main>);
-    const buttonElement = screen.getByTestId('main');
-    expect(buttonElement).toBeInTheDocument();
+    const children = screen.getByTestId('span');
+    expect(children).toBeInTheDocument();
   })
   
 })

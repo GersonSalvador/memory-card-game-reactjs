@@ -5,8 +5,8 @@ describe('Ul component', () => {
 
   it('renders on screen', () => {
     render(<Counter timing={{hour: 0, minute: 0, second: 0}}/>);
-    const counterElement = screen.getByTestId('counter');
-    expect(counterElement).toBeInTheDocument();
+    const component = screen.getByTestId('counter');
+    expect(component).toBeInTheDocument();
   });
 
   it("should render it's props", () => {

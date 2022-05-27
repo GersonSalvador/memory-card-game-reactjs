@@ -5,14 +5,14 @@ describe('Header component', () => {
 
   it('renders on screen', () => {
     render(<Header />);
-    const headerElement = screen.getByTestId('header');
-    expect(headerElement).toBeInTheDocument();
+    const component = screen.getByTestId('header');
+    expect(component).toBeInTheDocument();
   });
 
   it("should render it's children", () => {
     render(<Header>text test</Header>);
-    const buttonElement = screen.getByTestId('header');
-    expect(buttonElement).toHaveTextContent('text test');
+    const component = screen.getByTestId('header');
+    expect(component).toHaveTextContent('text test');
   })
   
 })

@@ -5,14 +5,14 @@ describe('Title component', () => {
 
   it('renders on screen', () => {
     render(<Title />);
-    const titleElement = screen.getByTestId('title');
-    expect(titleElement).toBeInTheDocument();
+    const component = screen.getByTestId('title');
+    expect(component).toBeInTheDocument();
   });
 
   it("should render it's children", () => {
     render(<Title>text test</Title>);
-    const buttonElement = screen.getByTestId('title');
-    expect(buttonElement).toHaveTextContent('text test')
+    const component = screen.getByTestId('title');
+    expect(component).toHaveTextContent('text test')
   })
   
 })
