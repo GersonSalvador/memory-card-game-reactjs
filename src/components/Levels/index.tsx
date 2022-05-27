@@ -1,6 +1,6 @@
 import { Container } from "./styles"
 import {ILevels} from "../../interfaces"
-import { Level } from "../";
+import Level from "./Level";
 interface UlProps {
   levels?: ILevels[]
 };
