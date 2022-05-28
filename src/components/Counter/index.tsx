@@ -15,7 +15,7 @@ function Counter({timing: {hour, minute, second}}: CounterPropos) {
 
   const handleStartClick = () => {
     act(() => {
-      setIsStarted(true)
+      setIsStarted(!isStarted)
     })
   }
 
