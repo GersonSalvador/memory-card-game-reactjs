@@ -1,22 +1,30 @@
+import { useState } from "react";
+
 import { Header, Main, Levels, Counter } from "../../components"
 import { ILevels } from "../../interfaces"
 
 const levels: ILevels[] = [
-  {name: 'Easy',pairs: 6},
-  {name: 'Normal', pairs: 10},
-  {name: 'Hard', pairs: 15},
-  {name: 'Master', pairs: 25},
+  { name: 'Easy', pairs: 6 },
+  { name: 'Normal', pairs: 10 },
+  { name: 'Hard', pairs: 15 },
+  { name: 'Master', pairs: 25 },
 ]
 
 export default function Dashboard() {
+
+  const [isStarted, setIsStarted] = useState(false);
+
   return (
     <div data-testid="dashboard">
       <Header>
         Memory Card Game
       </Header>
       <Main>
-        <Levels levels={levels}/>
-        <Counter timing={{hour: 0, minute: 0, second: 0}}/>
+        <Levels levels={levels} />
+        <Counter
+          timing={{ hour: 0, minute: 0, second: 0 }}
+          started={{ isStarted, setIsStarted }}
+        />
       </Main>
     </div>
   )
