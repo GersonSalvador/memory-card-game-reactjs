@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { act } from "react-dom/test-utils";
 import { Button, Container, LiValue, Li, Ul } from "./styles";
 interface CounterPropos{
   timing: {
@@ -13,7 +14,9 @@ function Counter({timing: {hour, minute, second}}: CounterPropos) {
   const [isStarted, setIsStarted] = useState(false);
 
   const handleStartClick = () => {
-    setIsStarted(true)
+    act(() => {
+      setIsStarted(true)
+    })
   }
 
   return(
@@ -38,7 +41,9 @@ function Counter({timing: {hour, minute, second}}: CounterPropos) {
           <span>Seconds</span>
         </Li>}
         <Li>
-          <Button onClick={handleStartClick}>Start</Button>
+          <Button data-testid="btn-start" onClick={handleStartClick}>
+            {isStarted ? "Stop" :"Start"}
+          </Button>
         </Li>
       </Ul>
     </Container>
