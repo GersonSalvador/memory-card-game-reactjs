@@ -1,16 +1,38 @@
+import { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import Counter from './';
+
+interface RenderCounterProps {
+  hour: number;
+  minute: number;
+  second: number;
+}
+
+function renderCounter(timing: RenderCounterProps) {
+  function MyComponent() {
+
+    const [isStarted, setIsStarted] = useState(false);
+
+    return (<Counter
+      timing={timing}
+      started={{ isStarted, setIsStarted }}
+    />)
+
+  }
+
+  return render(<MyComponent />);
+}
 
 describe('Ul component', () => {
 
   it('renders on screen', () => {
-    render(<Counter timing={{hour: 0, minute: 0, second: 0}}/>);
+    renderCounter({ hour: 0, minute: 0, second: 0 })
     const component = screen.getByTestId('counter');
     expect(component).toBeInTheDocument();
   });
 
   it("should show olny btn-start", () => {
-    const {queryByTestId} = render(<Counter timing={{hour: 1, minute: 5, second: 55}} />);
+    const { queryByTestId } = renderCounter({ hour: 0, minute: 0, second: 0 })
 
     expect(queryByTestId('hour-value')).toBeNull();
     expect(queryByTestId('minute-value')).toBeNull();
@@ -21,7 +43,7 @@ describe('Ul component', () => {
   })
 
   it("should render it's props and btn-start after btn-start been clicked", () => {
-    render(<Counter timing={{hour: 1, minute: 5, second: 55}} />);
+    renderCounter({ hour: 1, minute: 5, second: 55 });
 
     const startBtn = screen.getByTestId('btn-start');
     startBtn.click()
@@ -35,5 +57,5 @@ describe('Ul component', () => {
     expect(secondProp).toHaveTextContent('55');
     expect(startBtn).toHaveTextContent('Stop');
   })
-  
+
 })
