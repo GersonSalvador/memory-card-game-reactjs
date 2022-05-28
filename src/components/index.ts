@@ -1,6 +1,7 @@
+import Counter from "./Counter"
 import Header from "./Header"
-import Title from "./Title"
-import Main from "./Main"
 import Levels from "./Levels"
+import Main from "./Main"
+import Title from "./Title"
 
-export { Header, Title, Main, Levels,}
+export { Counter, Header, Levels, Main, Title,}
