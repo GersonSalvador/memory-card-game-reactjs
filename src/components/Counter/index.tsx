@@ -1,3 +1,4 @@
+import { Container, Li, Ul } from "./styles";
 interface CounterPropos{
   timing: {
     hour: number;
@@ -8,23 +9,28 @@ interface CounterPropos{
 
 function Counter({timing: {hour, minute, second}}: CounterPropos) {
   return(
-    <div data-testid="counter">
-      <div data-testid="hour">
-        <div data-testid="hour-value">
-          {hour}
-        </div>
-      </div>
-      <div data-testid="minute">
-        <div data-testid="minute-value">
-          {minute}
-        </div>
-      </div>
-      <div data-testid="second">
-        <div data-testid="second-value">
-          {second}
-        </div>
-      </div>
-    </div>
+    <Container data-testid="counter">
+      <Ul>
+        <Li>
+          <div data-testid="hour-value">
+            {hour}
+          </div>
+          <span>Hours</span>
+        </Li>
+        <Li>
+          <div data-testid="minute-value">
+            {minute}
+          </div>
+          <span>Minutes</span>
+        </Li>
+        <Li>
+          <div data-testid="second-value">
+            {second}
+          </div>
+          <span>Seconds</span>
+        </Li>
+      </Ul>
+    </Container>
   )
 }
 
