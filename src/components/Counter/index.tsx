@@ -1,4 +1,5 @@
-import { Container, Li, Ul } from "./styles";
+import { useState } from "react";
+import { Button, Container, LiValue, Li, Ul } from "./styles";
 interface CounterPropos{
   timing: {
     hour: number;
@@ -8,26 +9,36 @@ interface CounterPropos{
 }
 
 function Counter({timing: {hour, minute, second}}: CounterPropos) {
+
+  const [isStarted, setIsStarted] = useState(false);
+
+  const handleStartClick = () => {
+    setIsStarted(true)
+  }
+
   return(
     <Container data-testid="counter">
       <Ul>
-        <Li>
-          <div data-testid="hour-value">
+        {isStarted && <Li>
+          <LiValue data-testid="hour-value">
             {hour}
-          </div>
+          </LiValue>
           <span>Hours</span>
-        </Li>
-        <Li>
-          <div data-testid="minute-value">
+        </Li>}
+        {isStarted && <Li>
+          <LiValue data-testid="minute-value">
             {minute}
-          </div>
+          </LiValue>
           <span>Minutes</span>
-        </Li>
-        <Li>
-          <div data-testid="second-value">
+        </Li>}
+        {isStarted && <Li>
+          <LiValue data-testid="second-value">
             {second}
-          </div>
+          </LiValue>
           <span>Seconds</span>
+        </Li>}
+        <Li>
+          <Button onClick={handleStartClick}>Start</Button>
         </Li>
       </Ul>
     </Container>

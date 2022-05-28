@@ -6,6 +6,7 @@ export const Ul = styled.ul`
   list-style: none;
   display: flex;
   padding: 20px 0;
+  width: 460px;
 `;
 
 export const Li = styled.li`
@@ -22,4 +23,19 @@ export const Li = styled.li`
   &:last-child{
     display: flex;
   }
+`;
+
+export const Button = styled.button`
+  padding: 5px 8px;
+  border: none;
+  outline: none;
+  background: none;
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: large;
+  cursor: pointer;
+`;
+
+export const LiValue = styled.div`
+  text-align: center;
 `;
