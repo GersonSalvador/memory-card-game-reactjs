@@ -1,4 +1,4 @@
-import { Header, Main, Levels } from "../../components"
+import { Header, Main, Levels, Counter } from "../../components"
 import { ILevels } from "../../interfaces"
 
 const levels: ILevels[] = [
@@ -17,6 +17,7 @@ export default function Dashboard() {
       <Main>
         <Levels levels={levels}/>
       </Main>
+      <Counter timing={{hour: 0, minute: 0, second: 0}}/>
     </div>
   )
 }
