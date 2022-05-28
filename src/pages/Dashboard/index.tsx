@@ -16,8 +16,8 @@ export default function Dashboard() {
       </Header>
       <Main>
         <Levels levels={levels}/>
+        <Counter timing={{hour: 0, minute: 0, second: 0}}/>
       </Main>
-      <Counter timing={{hour: 0, minute: 0, second: 0}}/>
     </div>
   )
 }
