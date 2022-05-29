@@ -11,6 +11,7 @@ function Level({ level: { name, pairs, levelSelected, setLevelSelected }, index 
   return (
     <Container
       data-testid="level"
+      data-selected={levelSelected === index}
       selected={levelSelected === index}
       onClick={() => setLevelSelected(index)}
     >
