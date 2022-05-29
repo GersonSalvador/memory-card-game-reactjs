@@ -13,7 +13,7 @@ function Levels({
   levels,
 }: UlProps) {
   return (
-    <Container data-testid="ul">
+    <Container data-testid="levels">
       {levels?.map((level, index) => (
         <Level
           key={'li' + index}

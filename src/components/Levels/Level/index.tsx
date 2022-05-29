@@ -10,7 +10,7 @@ interface LevelProps {
 function Level({ level: { name, pairs, levelSelected, setLevelSelected }, index }: LevelProps) {
   return (
     <Container
-      data-testid="li"
+      data-testid="level"
       selected={levelSelected === index}
       onClick={() => setLevelSelected(index)}
     >

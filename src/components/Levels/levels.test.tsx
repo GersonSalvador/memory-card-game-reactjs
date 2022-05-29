@@ -19,7 +19,7 @@ describe('Level component', () => {
 
   it('renders on screen', () => {
     renderLevels();
-    const component = screen.getByTestId('ul');
+    const component = screen.getByTestId('levels');
     expect(component).toBeInTheDocument();
   });
 
