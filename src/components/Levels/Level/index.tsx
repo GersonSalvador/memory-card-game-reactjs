@@ -1,11 +1,12 @@
-import {Container, H3, Span} from "./styles";
-import {ILevels} from "../../../interfaces"
+import { ILevels } from "../../../interfaces"
+
+import { Container, H3, Span } from "./styles";
 
 interface LevelProps {
-  level?: ILevels;
+  level: ILevels;
 }
 
-function Level({level}: LevelProps) {
+function Level({ level }: LevelProps) {
   return (
     <Container data-testid="li">
       {level?.name && <H3>{level?.name}</H3>}

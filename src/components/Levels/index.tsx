@@ -1,15 +1,24 @@
-import { Container } from "./styles"
-import {ILevels} from "../../interfaces"
+import React from "react";
+
+import { ILevels } from "../../interfaces"
 import Level from "./Level";
+
+import { Container } from "./styles"
+
 interface UlProps {
-  levels?: ILevels[]
+  levels?: ILevels[];
 };
 
-function Levels({levels}: UlProps) {
+function Levels({
+  levels,
+}: UlProps) {
   return (
     <Container data-testid="ul">
       {levels?.map((level, index) => (
-        <Level key={'li'+index} level={level} />
+        <Level
+          key={'li' + index}
+          level={level}
+        />
       ))}
     </Container>
   )
