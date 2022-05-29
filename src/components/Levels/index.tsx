@@ -18,6 +18,7 @@ function Levels({
         <Level
           key={'li' + index}
           level={level}
+          {...{ index }}
         />
       ))}
     </Container>

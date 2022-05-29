@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.li`
+interface liProps {
+  selected: boolean;
+}
+
+export const Container = styled.li<liProps>`
   
+  background: ${({ selected }) => (selected && 'rgba(0,0,0,.2)')};
+
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -14,7 +20,7 @@ export const Container = styled.li`
   text-align: center;
   cursor: pointer;
 
-  &:active,&:hover{
+  &:hover{
     background: rgba(0,0,0,.2);
     transition: all .2s linear;
   }

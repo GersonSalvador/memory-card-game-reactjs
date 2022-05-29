@@ -10,6 +10,7 @@ function renderLevel() {
 
     return <Level
       level={{ name: 'level one', pairs: 10, levelSelected, setLevelSelected }}
+      index={0}
     />
   }
   render(<LevelRender />);
