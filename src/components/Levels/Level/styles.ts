@@ -19,6 +19,7 @@ export const Container = styled.li<liProps>`
   display: block;
   text-align: center;
   cursor: pointer;
+  test-align: center;
 
   &:hover{
     background: rgba(0,0,0,.2);
