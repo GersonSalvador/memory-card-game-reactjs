@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useStopwatch } from 'react-timer-hook';
 
 import { Header, Main, Levels, Counter } from "../../components"
 import { ILevels } from "../../interfaces"
@@ -15,6 +16,18 @@ export default function Dashboard() {
     { name: 'master', pairs: 25, levelSelected, setLevelSelected },
   ]
 
+  const {
+    seconds,
+    minutes,
+    hours,
+    start
+  }  = useStopwatch({ autoStart: false })
+
+  useEffect(() => {
+    if(isStarted)
+      start()
+  }, [isStarted])
+
   return (
     <div data-testid="dashboard">
       <Header>
@@ -23,7 +36,7 @@ export default function Dashboard() {
       <Main>
         <Levels levels={levels} />
         <Counter
-          timing={{ hour: 0, minute: 0, second: 0 }}
+          timing={{ hours, minutes, seconds }}
           started={{ isStarted, setIsStarted }}
         />
       </Main>
