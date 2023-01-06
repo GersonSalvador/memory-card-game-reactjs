@@ -10,7 +10,7 @@ export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
-
+  display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
