@@ -30,6 +30,7 @@ export const Container = styled.li<liProps>`
 export const H3 = styled.h3`
   text-align:center;
   display: block;
+  text-transform: capitalize;
 `;
 
 export const Span = styled.span`
