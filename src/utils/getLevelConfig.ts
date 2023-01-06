@@ -1,6 +1,6 @@
 import { ILevelsName } from "../interfaces"
 
-export function getDifficult(difficult: ILevelsName){
+export function getLevelConfig(level: ILevelsName){
   const difficults = {
     easy: {
       pairs: 6,
@@ -19,5 +19,5 @@ export function getDifficult(difficult: ILevelsName){
       width: 890
     }
   }
-  return difficults[difficult]
+  return difficults[level]
 }
