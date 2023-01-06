@@ -24,7 +24,7 @@ describe('Level component', () => {
     expect(component).toBeInTheDocument();
   });
 
-  it("should render it's props", () => {
+  it("should render it's level name", () => {
     renderLevel();
     const props = screen.getByText('easy');
     expect(props).toHaveTextContent('easy');
