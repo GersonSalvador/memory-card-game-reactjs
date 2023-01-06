@@ -9,7 +9,7 @@ function renderLevel() {
     const [levelSelected, setLevelSelected] = useState(0)
 
     return <Level
-      level={{ name: 'level one', pairs: 10, levelSelected, setLevelSelected }}
+      level={{ name: 'easy', pairs: 10, levelSelected, setLevelSelected }}
       index={0}
     />
   }
@@ -26,8 +26,8 @@ describe('Level component', () => {
 
   it("should render it's props", () => {
     renderLevel();
-    const props = screen.getByText('level one');
-    expect(props).toHaveTextContent('level one');
+    const props = screen.getByText('easy');
+    expect(props).toHaveTextContent('easy');
   })
 
 })

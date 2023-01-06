@@ -9,10 +9,10 @@ export default function Dashboard() {
   const [isStarted, setIsStarted] = useState(false);
 
   const levels: ILevels[] = [
-    { name: 'Easy', pairs: 6, levelSelected, setLevelSelected },
-    { name: 'Normal', pairs: 10, levelSelected, setLevelSelected },
-    { name: 'Hard', pairs: 15, levelSelected, setLevelSelected },
-    { name: 'Master', pairs: 25, levelSelected, setLevelSelected },
+    { name: 'easy', pairs: 6, levelSelected, setLevelSelected },
+    { name: 'normal', pairs: 10, levelSelected, setLevelSelected },
+    { name: 'hard', pairs: 15, levelSelected, setLevelSelected },
+    { name: 'master', pairs: 25, levelSelected, setLevelSelected },
   ]
 
   return (
