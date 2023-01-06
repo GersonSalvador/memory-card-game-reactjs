@@ -1,14 +1,15 @@
 import React from "react";
 import { act } from "react-dom/test-utils";
+
 import Board from "../Board";
 
 import { Button, Container, LiValue, Li, Ul } from "./styles";
 
 interface CounterPropos {
   timing: {
-    hour: number;
-    minute: number;
-    second: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
   },
   started: {
     isStarted: boolean;
@@ -17,7 +18,7 @@ interface CounterPropos {
 }
 
 function Counter({
-  timing: { hour, minute, second },
+  timing: { hours, minutes, seconds },
   started: { isStarted, setIsStarted }
 }: CounterPropos) {
 
@@ -33,19 +34,19 @@ function Counter({
         <Ul>
           {isStarted && <Li>
             <LiValue data-testid="hour-value">
-              {hour}
+              {hours}
             </LiValue>
             <span>Hours</span>
           </Li>}
           {isStarted && <Li>
             <LiValue data-testid="minute-value">
-              {minute}
+              {minutes}
             </LiValue>
             <span>Minutes</span>
           </Li>}
           {isStarted && <Li>
             <LiValue data-testid="second-value">
-              {second}
+              {seconds}
             </LiValue>
             <span>Seconds</span>
           </Li>}
