@@ -30,4 +30,10 @@ describe('Level component', () => {
     expect(props).toHaveTextContent('easy');
   })
 
+  it("should render it's level description", () => {
+    renderLevel();
+    const props = screen.getByText('10 pairs');
+    expect(props).toHaveTextContent('10 pairs');
+  })
+
 })
