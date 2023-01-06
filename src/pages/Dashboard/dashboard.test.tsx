@@ -14,13 +14,13 @@ describe('Dashboard Page', () => {
     expect(component).toBeInTheDocument();
   });
 
-  it('shoukd have 4 levels', () => {
+  it('should have 4 levels', () => {
     makeSut()
     const component = screen.getByTestId('levels')
     expect(component.childNodes.length).toEqual(4);
   })
 
-  it('shoukd have 1 selected level', () => {
+  it('should have 1 selected level', () => {
     const { container } = makeSut()
     const component = container.querySelector('[data-selected="true"]')
     expect(component).toBeInTheDocument();
