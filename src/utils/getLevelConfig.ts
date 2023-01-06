@@ -1,23 +1,23 @@
 import { ILevelsName } from "../interfaces"
 
-export function getLevelConfig(level: ILevelsName){
-  const difficults = {
-    easy: {
-      pairs: 6,
-      width: 440
-    },
-    normal: {
-      pairs: 10,
-      width: 550
-    },
-    hard: {
-      pairs: 15,
-      width: 660
-    },
-    master: {
-      pairs: 25,
-      width: 890
-    }
+export const levels = {
+  easy: {
+    pairs: 6,
+    width: 440
+  },
+  normal: {
+    pairs: 10,
+    width: 550
+  },
+  hard: {
+    pairs: 15,
+    width: 660
+  },
+  master: {
+    pairs: 25,
+    width: 890
   }
-  return difficults[level]
+}
+export function getLevelConfig(level: ILevelsName){
+  return levels[level]
 }
