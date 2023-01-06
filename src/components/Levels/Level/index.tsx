@@ -16,7 +16,7 @@ function Level({ level: { name, pairs, levelSelected, setLevelSelected }, index 
       onClick={() => setLevelSelected(index)}
     >
       {name && <H3>{name}</H3>}
-      {pairs && <Span>{pairs}</Span>}
+      {pairs && <Span>{pairs} pairs</Span>}
     </Container>
   )
 }
