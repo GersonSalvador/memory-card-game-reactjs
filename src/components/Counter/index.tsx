@@ -1,5 +1,6 @@
 import React from "react";
 import { act } from "react-dom/test-utils";
+import Board from "../Board";
 
 import { Button, Container, LiValue, Li, Ul } from "./styles";
 
@@ -27,33 +28,36 @@ function Counter({
   }
 
   return (
-    <Container data-testid="counter">
-      <Ul>
-        {isStarted && <Li>
-          <LiValue data-testid="hour-value">
-            {hour}
-          </LiValue>
-          <span>Hours</span>
-        </Li>}
-        {isStarted && <Li>
-          <LiValue data-testid="minute-value">
-            {minute}
-          </LiValue>
-          <span>Minutes</span>
-        </Li>}
-        {isStarted && <Li>
-          <LiValue data-testid="second-value">
-            {second}
-          </LiValue>
-          <span>Seconds</span>
-        </Li>}
-        <Li>
-          <Button data-testid="btn-start" onClick={handleStartClick}>
-            {isStarted ? "Stop" : "Start"}
-          </Button>
-        </Li>
-      </Ul>
-    </Container>
+    <>
+      <Container data-testid="counter">
+        <Ul>
+          {isStarted && <Li>
+            <LiValue data-testid="hour-value">
+              {hour}
+            </LiValue>
+            <span>Hours</span>
+          </Li>}
+          {isStarted && <Li>
+            <LiValue data-testid="minute-value">
+              {minute}
+            </LiValue>
+            <span>Minutes</span>
+          </Li>}
+          {isStarted && <Li>
+            <LiValue data-testid="second-value">
+              {second}
+            </LiValue>
+            <span>Seconds</span>
+          </Li>}
+          <Li>
+            <Button data-testid="btn-start" onClick={handleStartClick}>
+              {isStarted ? "Stop" : "Start"}
+            </Button>
+          </Li>
+        </Ul>
+      </Container>
+      {isStarted && <Board boardWidth={200}/>}
+    </>
   )
 }
 
