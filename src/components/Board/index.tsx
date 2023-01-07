@@ -1,13 +1,19 @@
+import Card from "../Card";
 import { Container } from "./styles"
 
 interface BoardProps {
-  boardWidth: number;
+  levelInfo: {
+    pairs: number;
+    width: number;
+  }
 }
 
-function Board({boardWidth}: BoardProps){
+function Board({levelInfo: {pairs, width}}: BoardProps){
   return (
-    <Container data-testid="board" boardWidth={boardWidth}>
-      board with some cards
+    <Container data-testid="board" boardWidth={width}>
+      {
+        [...Array(pairs * 2)].map((i, index) => <Card img="https://avatars.dicebear.com/api/bottts/1.svg" key={`img-${index}`}/>)
+      }
     </Container>
   )
 }
