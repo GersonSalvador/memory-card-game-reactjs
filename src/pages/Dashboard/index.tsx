@@ -3,11 +3,13 @@ import { useStopwatch } from 'react-timer-hook';
 
 import { Header, Main, Levels, Counter } from "../../components"
 import Board from "../../components/Board";
+import {getLevelConfig} from "../../utils/getLevelConfig";
 import { ILevels } from "../../interfaces"
 
 export default function Dashboard() {
 
   const [levelSelected, setLevelSelected] = useState(1);
+  const [levelInfo, setLevelInfo] = useState({pairs: 0, width: 0});
   const [isStarted, setIsStarted] = useState(false);
 
   const levels: ILevels[] = [
@@ -29,6 +31,14 @@ export default function Dashboard() {
       start()
   }, [isStarted])
 
+  const getLevelSelected = () => {
+    const levelName = levels.filter((l, index) => index === levelSelected)[0].name
+    const level = getLevelConfig(levelName)
+    setLevelInfo(level)
+  }
+
+  useEffect(getLevelSelected, [levelSelected])
+
   return (
     <div data-testid="dashboard">
       <Header>
@@ -40,7 +50,7 @@ export default function Dashboard() {
           timing={{ hours, minutes, seconds }}
           started={{ isStarted, setIsStarted }}
         />
-        {isStarted && <Board boardWidth={600} pairsOfCards={6}/>}
+        {isStarted && <Board levelInfo={levelInfo}/>}
       </Main>
     </div>
   )
