@@ -32,7 +32,7 @@ export default function Dashboard() {
   return (
     <div data-testid="dashboard">
       <Header>
-        Memory Card Game
+        Memory Game
       </Header>
       <Main>
         <Levels levels={levels} />
