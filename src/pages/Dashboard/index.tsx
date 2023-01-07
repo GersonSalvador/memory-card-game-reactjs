@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useStopwatch } from 'react-timer-hook';
 
 import { Header, Main, Levels, Counter } from "../../components"
+import Board from "../../components/Board";
 import { ILevels } from "../../interfaces"
 
 export default function Dashboard() {
@@ -39,6 +40,7 @@ export default function Dashboard() {
           timing={{ hours, minutes, seconds }}
           started={{ isStarted, setIsStarted }}
         />
+        {isStarted && <Board boardWidth={600} pairsOfCards={6}/>}
       </Main>
     </div>
   )

@@ -1,8 +1,6 @@
 import React from "react";
 import { act } from "react-dom/test-utils";
 
-import Board from "../Board";
-
 import { Button, Container, LiValue, Li, Ul } from "./styles";
 
 interface CounterPropos {
@@ -57,7 +55,6 @@ function Counter({
           </Li>
         </Ul>
       </Container>
-      {isStarted && <Board boardWidth={200}/>}
     </>
   )
 }
