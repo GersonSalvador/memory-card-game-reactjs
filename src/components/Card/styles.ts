@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface CardInnerProps{
+  isSelected: boolean
+}
+
 export const CardWrap = styled.figure`
   width: 100px;
   height: 100px;
@@ -12,7 +16,8 @@ export const CardWrap = styled.figure`
   cursor: pointer;
 `
 
-export const CardInner = styled.div`
+export const CardInner = styled.div<CardInnerProps>`
+  transform: ${({isSelected}) => isSelected ? 'rotateY(180deg)' : 'rotateY(0deg)'};
   position: relative;
   transition: transform 0.8s;
   transform-style: preserve-3d;
