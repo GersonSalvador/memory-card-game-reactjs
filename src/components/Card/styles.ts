@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 interface CardInnerProps{
-  isSelected: boolean
+  isSelected: boolean;
+  isHidden: Boolean;
 }
 
 export const CardWrap = styled.figure`
@@ -17,6 +18,7 @@ export const CardWrap = styled.figure`
 `
 
 export const CardInner = styled.div<CardInnerProps>`
+  display: ${({isHidden}) => isHidden ? 'none' : 'block'};
   transform: ${({isSelected}) => isSelected ? 'rotateY(180deg)' : 'rotateY(0deg)'};
   position: relative;
   transition: transform 0.8s;
