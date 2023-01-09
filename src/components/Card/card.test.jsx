@@ -150,6 +150,28 @@ describe('Card', () => {
         expect(setWait).toHaveBeenCalledWith(false);
       }, 1000);
     });
+
+    it('should not update the pair and allCards states when the card is clicked and the wait state is true', () => {
+      const setAllCards = jest.fn();
+      const setPair = jest.fn();
+      const cardInfo = { cardIndex: 0, isSelected: false, isHidden: false };
+      const wait = true;
+      const setWait = jest.fn();
+      const allCards = [cardInfo];
+      const { getByTestId } = render(<Card
+        cardInfo={cardInfo}
+        cardSequence={0}
+        allCards={allCards}
+        setAllCards={setAllCards}
+        pair={[]}
+        setPair={setPair}
+        waitFn={{wait, setWait}}
+      />);
+      const cardElement = getByTestId('card');
+      fireEvent.click(cardElement);
+      expect(setPair).not.toHaveBeenCalled();
+      expect(setAllCards).not.toHaveBeenCalled();
+    });
   });
 
 })
