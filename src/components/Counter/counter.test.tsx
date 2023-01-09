@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Counter from './';
 
 interface RenderCounterProps {
@@ -57,5 +57,24 @@ describe('Ul component', () => {
     expect(secondProp).toHaveTextContent('55');
     expect(startBtn).toHaveTextContent('Stop');
   })
+  
+  it('should start counting on hit start btn', () => {
+    const { getByTestId } = renderCounter({ hours: 0, minutes: 0, seconds: 0})
+    const startBtn = screen.getByTestId('start-btn')
+    fireEvent.click(startBtn)
+    const hours = getByTestId('hour-value')
+    const minutes = getByTestId('minute-value')
+    const seconds = getByTestId('second-value')
+    expect(hours).toHaveTextContent('0')
+    expect(minutes).toHaveTextContent('0')
+    expect(seconds).toHaveTextContent('0')
+    startBtn.click()
+    setTimeout(() => {
+      expect(hours).toHaveTextContent('0')
+      expect(minutes).toHaveTextContent('0')
+      expect(seconds).toHaveTextContent('1')
+    }, 1000)
+  })
+
 
 })
