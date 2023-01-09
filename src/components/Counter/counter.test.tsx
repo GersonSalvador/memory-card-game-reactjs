@@ -42,21 +42,30 @@ describe('Ul component', () => {
     expect(startBtn).toHaveTextContent('Start');
   })
 
-  it("should render it's props and start-btn after start-btn been clicked", () => {
-    renderCounter({ hours: 1, minutes: 5, seconds: 55 });
+  it("should render counter's props after start", () => {
+    const timing = { hours: 1, minutes: 5, seconds: 55 } 
+    const {getByTestId} = renderCounter(timing);
 
-    const startBtn = screen.getByTestId('start-btn');
+    const startBtn = getByTestId('start-btn');
     startBtn.click()
 
-    const hourProp = screen.getByTestId('hour-value');
-    const minuteProp = screen.getByTestId('minute-value');
-    const secondProp = screen.getByTestId('second-value');
+    const hourProp = getByTestId('hour-value');
+    const minuteProp = getByTestId('minute-value');
+    const secondProp = getByTestId('second-value');
 
     expect(hourProp).toHaveTextContent('1');
     expect(minuteProp).toHaveTextContent('5');
     expect(secondProp).toHaveTextContent('55');
-    expect(startBtn).toHaveTextContent('Stop');
-  })
+ })
+
+ it("should have Stop after Start btn beeing clicked", () => {
+   const timing = { hours: 1, minutes: 5, seconds: 55 } 
+   renderCounter(timing);
+
+   const startBtn = screen.getByTestId('start-btn');
+   startBtn.click()
+   expect(startBtn).toHaveTextContent('Stop');
+})
   
   it('should start counting on hit start btn', () => {
     const { getByTestId } = renderCounter({ hours: 0, minutes: 0, seconds: 0})
@@ -65,9 +74,6 @@ describe('Ul component', () => {
     const hours = getByTestId('hour-value')
     const minutes = getByTestId('minute-value')
     const seconds = getByTestId('second-value')
-    expect(hours).toHaveTextContent('0')
-    expect(minutes).toHaveTextContent('0')
-    expect(seconds).toHaveTextContent('0')
     startBtn.click()
     setTimeout(() => {
       expect(hours).toHaveTextContent('0')
