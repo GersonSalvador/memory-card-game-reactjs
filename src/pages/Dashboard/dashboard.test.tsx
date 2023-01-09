@@ -25,5 +25,4 @@ describe('Dashboard Page', () => {
     const component = container.querySelector('[data-selected="true"]')
     expect(component).toBeInTheDocument();
   })
-
 })
