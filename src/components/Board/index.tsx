@@ -20,6 +20,7 @@ function Board({levelInfo: {pairs, width}}: BoardProps){
   const pairsIndexArr = [...cardsIndexArr, ...cardsIndexArr]
   const [allCards, setAllCards] = useState<ICardInfo[]>([])
   const [pair, setPair] = useState<number[]>([])
+  const [wait, setWait] = useState<boolean>(false)
 
   useEffect(() => {
     const shuffled = pairsIndexArr.sort(() => Math.random() - 0.5);
@@ -30,7 +31,7 @@ function Board({levelInfo: {pairs, width}}: BoardProps){
     <Container data-testid="board" boardWidth={width}>
       {
         allCards.map((cardInfo, cardSequence) => {
-          const {cardIndex, isHidden} = cardInfo
+          const {cardIndex} = cardInfo
           return <Card 
             img={`https://avatars.dicebear.com/api/bottts/${cardIndex}.svg`} 
             cardInfo={cardInfo} 
@@ -40,7 +41,7 @@ function Board({levelInfo: {pairs, width}}: BoardProps){
             key={`img-${cardSequence}`} 
             pair={pair} 
             setPair={setPair}
-            isHidden={isHidden}
+            waitFn={{wait, setWait}}
         />})
       }
     </Container>

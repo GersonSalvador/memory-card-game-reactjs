@@ -10,7 +10,10 @@ interface ICard{
   cardSequence: number;
   allCards: ICardInfo[];
   setAllCards: React.Dispatch<React.SetStateAction<ICardInfo[]>>;
-  isHidden: boolean;
+  waitFn: {
+    wait: boolean;
+    setWait: React.Dispatch<React.SetStateAction<boolean>>;
+  }
 }
 
 interface IValue{
@@ -19,8 +22,9 @@ interface IValue{
   isSelected?: boolean;
 }
 
-export default function Card({img, pair, setPair, cardInfo, cardSequence, allCards, setAllCards, isHidden}: ICard){
-  const {cardIndex, isSelected} = cardInfo
+export default function Card({img, pair, setPair, cardInfo, cardSequence, allCards, setAllCards, waitFn}: ICard){
+  const {cardIndex, isHidden, isSelected} = cardInfo
+  const {wait, setWait} = waitFn
   
   const changeCardsInfo = (indexToChange: number[], value: IValue) => {
     const changedCards = allCards.map((card: ICardInfo, index) => {
@@ -32,22 +36,29 @@ export default function Card({img, pair, setPair, cardInfo, cardSequence, allCar
   }
 
   const handleClick = () => {
+    if(wait || isSelected || isHidden)
+      return
     if(pair.length === 0){
       changeCardsInfo([cardSequence], {isSelected: true})
       setPair([cardSequence])
     }
     if(pair.length > 0){
+      setWait(true)
       const pairIndex = allCards[pair[0]].cardIndex
-      if(pairIndex === cardIndex)
-        changeCardsInfo([...pair, cardSequence], {isSelected: true, isHidden: true})
-      else
-        changeCardsInfo([...pair, cardSequence], {isSelected: false})
-      setPair([])
+      changeCardsInfo([cardSequence], {isSelected: true})
+      setTimeout(() => {
+        if(pairIndex === cardIndex)
+          changeCardsInfo([...pair, cardSequence], {isSelected: true, isHidden: true})
+        else
+          changeCardsInfo([...pair, cardSequence], {isSelected: false})
+        setPair([])
+        setWait(false)
+      }, 1000)
     }
   }
 
   return(
-    <CardWrap data-testid="card" data-index="0" onClick={handleClick}>
+    <CardWrap data-testid="card" data-index="0" onClick={handleClick} pointer={() => wait || isSelected}>
       <CardInner isSelected={isSelected} isHidden={isHidden}>
         <CardFront/>
         <CardBack>

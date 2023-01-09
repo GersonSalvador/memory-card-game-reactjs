@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 
+interface CardProps {
+  pointer: () => boolean;
+}
+
 interface CardInnerProps{
   isSelected: boolean;
   isHidden: Boolean;
 }
 
-export const CardWrap = styled.figure`
+export const CardWrap = styled.figure<CardProps>`
   width: 100px;
   height: 100px;
   perspective: 1000px;
@@ -14,7 +18,7 @@ export const CardWrap = styled.figure`
   margin: 5px;
   border-radius: 5px;
   overflow: hidden;
-  cursor: pointer;
+  cursor: ${({pointer}) => pointer() ? 'default': 'pointer'}};
 `
 
 export const CardInner = styled.div<CardInnerProps>`
