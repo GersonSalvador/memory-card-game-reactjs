@@ -49,7 +49,7 @@ function Counter({
             <span>Seconds</span>
           </Li>}
           <Li>
-            <Button data-testid="btn-start" onClick={handleStartClick}>
+            <Button data-testid="start-btn" onClick={handleStartClick}>
               {isStarted ? "Stop" : "Start"}
             </Button>
           </Li>

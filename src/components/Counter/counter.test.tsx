@@ -31,21 +31,21 @@ describe('Ul component', () => {
     expect(component).toBeInTheDocument();
   });
 
-  it("should show olny btn-start", () => {
+  it("should show olny start-btn", () => {
     const { queryByTestId } = renderCounter({ hours: 0, minutes: 0, seconds: 0 })
 
     expect(queryByTestId('hour-value')).toBeNull();
     expect(queryByTestId('minute-value')).toBeNull();
     expect(queryByTestId('second-value')).toBeNull();
-    const startBtn = screen.getByTestId('btn-start');
+    const startBtn = screen.getByTestId('start-btn');
 
     expect(startBtn).toHaveTextContent('Start');
   })
 
-  it("should render it's props and btn-start after btn-start been clicked", () => {
+  it("should render it's props and start-btn after start-btn been clicked", () => {
     renderCounter({ hours: 1, minutes: 5, seconds: 55 });
 
-    const startBtn = screen.getByTestId('btn-start');
+    const startBtn = screen.getByTestId('start-btn');
     startBtn.click()
 
     const hourProp = screen.getByTestId('hour-value');
