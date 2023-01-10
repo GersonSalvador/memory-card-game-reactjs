@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import React, { useEffect, useState} from "react";
 import Card from "../Card";
 import { Container } from "./styles"
 
@@ -6,7 +6,9 @@ interface BoardProps {
   levelInfo: {
     pairs: number;
     width: number;
-  }
+  },
+  setIsFinished: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsWon: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface ICardInfo{
@@ -15,7 +17,11 @@ export interface ICardInfo{
   isSelected: boolean;
 }
 
-function Board({levelInfo: {pairs, width}}: BoardProps){
+function Board({
+  levelInfo: {pairs, width},
+  setIsFinished,
+  setIsWon,
+}: BoardProps){
   const cardsIndexArr = [...Array(pairs)].map((item, index) => index)
   const pairsIndexArr = [...cardsIndexArr, ...cardsIndexArr]
   const [allCards, setAllCards] = useState<ICardInfo[]>([])
@@ -27,6 +33,18 @@ function Board({levelInfo: {pairs, width}}: BoardProps){
     const cardsInfos = shuffled.map((cardIndex) => ({cardIndex, isHidden: false, isSelected: false}))
     setAllCards(cardsInfos)
   }, [])
+
+  useEffect(() => {
+    const result = allCards.reduce((acc, {isHidden}) => {
+      if(isHidden === false)
+        acc++
+      return acc
+    }, 0) === (pairs * 2)
+    if(result){
+      setIsFinished(true)
+      setIsWon(true)
+    }
+  }, [allCards])
   return (
     <Container data-testid="board" boardWidth={width}>
       {
