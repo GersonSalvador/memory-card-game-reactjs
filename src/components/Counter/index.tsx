@@ -12,7 +12,11 @@ interface CounterPropos {
   started: {
     isStarted: boolean;
     setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
-  }
+  },
+  finished: {
+    isFinished: boolean;
+    setIsFinished: React.Dispatch<React.SetStateAction<boolean>>;
+  },
 }
 
 function Counter({
