@@ -5,12 +5,15 @@ import { Header, Main, Levels, Counter } from "../../components"
 import Board from "../../components/Board";
 import {getLevelConfig} from "../../utils/getLevelConfig";
 import { ILevels } from "../../interfaces"
+import MessageDisplay from "../../components/MessageDisplay";
 
 export default function Dashboard() {
 
   const [levelSelected, setLevelSelected] = useState(1);
   const [levelInfo, setLevelInfo] = useState({pairs: 0, width: 0});
   const [isStarted, setIsStarted] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
+  const [isWon, setIsWon] = useState(false);
 
   const levels: ILevels[] = [
     { name: 'easy', pairs: 6, levelSelected, setLevelSelected },
@@ -49,8 +52,14 @@ export default function Dashboard() {
         <Counter
           timing={{ hours, minutes, seconds }}
           started={{ isStarted, setIsStarted }}
-        />
-        {isStarted && <Board levelInfo={levelInfo}/>}
+          finished={{ isFinished, setIsFinished }}
+          />
+        {isStarted && <Board 
+          levelInfo={levelInfo}
+          setIsFinished={setIsFinished}
+          setIsWon={setIsWon}
+        />}
+        {isFinished && <MessageDisplay won={isWon} />}
       </Main>
     </div>
   )
