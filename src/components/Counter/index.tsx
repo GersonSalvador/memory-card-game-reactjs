@@ -17,36 +17,45 @@ interface CounterPropos {
     isFinished: boolean;
     setIsFinished: React.Dispatch<React.SetStateAction<boolean>>;
   },
+  setIsWon: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function Counter({
   timing: { hours, minutes, seconds },
-  started: { isStarted, setIsStarted }
+  started: { isStarted, setIsStarted },
+  finished: { isFinished, setIsFinished },
+  setIsWon,
 }: CounterPropos) {
 
   const handleStartClick = () => {
     act(() => {
-      setIsStarted(!isStarted)
+      if(isStarted){
+        setIsStarted(false)
+        setIsFinished(true)
+        setIsWon(false)
+      }else{
+        setIsStarted(true)
+        setIsFinished(false)
+      }
     })
   }
-
   return (
     <>
       <Container data-testid="counter">
         <Ul>
-          {isStarted && <Li>
+          {(isStarted || isFinished) && <Li>
             <LiValue data-testid="hour-value">
               {hours}
             </LiValue>
             <span>Hours</span>
           </Li>}
-          {isStarted && <Li>
+          {(isStarted || isFinished) && <Li>
             <LiValue data-testid="minute-value">
               {minutes}
             </LiValue>
             <span>Minutes</span>
           </Li>}
-          {isStarted && <Li>
+          {(isStarted || isFinished) && <Li>
             <LiValue data-testid="second-value">
               {seconds}
             </LiValue>

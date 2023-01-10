@@ -9,6 +9,7 @@ interface BoardProps {
   },
   setIsFinished: React.Dispatch<React.SetStateAction<boolean>>;
   setIsWon: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsStarted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface ICardInfo{
@@ -21,6 +22,7 @@ function Board({
   levelInfo: {pairs, width},
   setIsFinished,
   setIsWon,
+  setIsStarted,
 }: BoardProps){
   const cardsIndexArr = [...Array(pairs)].map((item, index) => index)
   const pairsIndexArr = [...cardsIndexArr, ...cardsIndexArr]
@@ -36,13 +38,14 @@ function Board({
 
   useEffect(() => {
     const result = allCards.reduce((acc, {isHidden}) => {
-      if(isHidden === false)
+      if(isHidden === true)
         acc++
       return acc
     }, 0) === (pairs * 2)
     if(result){
       setIsFinished(true)
       setIsWon(true)
+      setIsStarted(false)
     }
   }, [allCards])
   return (

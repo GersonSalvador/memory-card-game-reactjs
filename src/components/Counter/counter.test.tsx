@@ -14,11 +14,13 @@ function renderCounter(isStartedBool: boolean, timing: RenderCounterProps) {
     const setIsStarted = jest.fn()
     const isFinished = false
     const setIsFinished = jest.fn()
+    const setIsWon = jest.fn()
 
     return (<Counter
       timing={timing}
       started={{ isStarted, setIsStarted }}
       finished={{ isFinished, setIsFinished }}
+      setIsWon={setIsWon}
     />)
 
   }

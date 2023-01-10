@@ -26,13 +26,22 @@ export default function Dashboard() {
     seconds,
     minutes,
     hours,
-    start
+    start,
+    pause,
+    reset,
   }  = useStopwatch({ autoStart: false })
 
   useEffect(() => {
-    if(isStarted)
+    if(isStarted){
+      reset()
       start()
+    }
   }, [isStarted])
+
+  useEffect(() => {
+    if(isFinished)
+      pause()
+  }, [isFinished])
 
   const getLevelSelected = () => {
     const levelName = levels.filter((l, index) => index === levelSelected)[0].name
@@ -53,11 +62,13 @@ export default function Dashboard() {
           timing={{ hours, minutes, seconds }}
           started={{ isStarted, setIsStarted }}
           finished={{ isFinished, setIsFinished }}
+          setIsWon={setIsWon}
           />
         {isStarted && <Board 
           levelInfo={levelInfo}
           setIsFinished={setIsFinished}
           setIsWon={setIsWon}
+          setIsStarted={setIsStarted}
         />}
         {isFinished && <MessageDisplay won={isWon} />}
       </Main>
