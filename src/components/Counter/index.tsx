@@ -63,7 +63,7 @@ function Counter({
           </Li>}
           <Li>
             <Button data-testid="start-btn" onClick={handleStartClick}>
-              {isStarted ? "Stop" : "Start"}
+              {isStarted ? "Resign" : "Start"}
             </Button>
           </Li>
         </Ul>
