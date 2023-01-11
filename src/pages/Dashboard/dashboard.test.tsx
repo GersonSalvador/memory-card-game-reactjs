@@ -32,4 +32,10 @@ describe('Dashboard Page', () => {
     const component = getByTestId('counter')
     expect(component).toBeInTheDocument();
   })
+
+  it('should have 1 Counter', () => {
+    const {getByTestId} = makeSut()
+    const component = getByTestId('counter')
+    expect(component).toBeInTheDocument();
+  })
 })
