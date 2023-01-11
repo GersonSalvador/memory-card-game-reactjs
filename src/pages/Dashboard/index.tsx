@@ -57,7 +57,7 @@ export default function Dashboard() {
         Memory Game
       </Header>
       <Main>
-        <Levels levels={levels} />
+        <Levels levels={levels} isStarted={isStarted} />
         <Counter
           timing={{ hours, minutes, seconds }}
           started={{ isStarted, setIsStarted }}

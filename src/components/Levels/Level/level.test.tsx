@@ -11,6 +11,7 @@ function renderLevel() {
     return <Level
       level={{ name: 'easy', pairs: 10, levelSelected, setLevelSelected }}
       index={0}
+      isStarted={false}
     />
   }
   render(<LevelRender />);
