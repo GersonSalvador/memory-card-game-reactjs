@@ -14,6 +14,12 @@ describe('Dashboard Page', () => {
     expect(component).toBeInTheDocument();
   });
 
+  it('should render Header', () => {
+    const {getByTestId} = makeSut()
+    const component = getByTestId('header');
+    expect(component).toBeInTheDocument();
+  })
+
   it('should have 4 levels', () => {
     const {getByTestId} = makeSut()
     const component = getByTestId('levels')
