@@ -8,14 +8,13 @@ interface RenderCounterProps {
 }
 
 function renderCounter(isStartedBool: boolean, timing: RenderCounterProps) {
+  const isStarted = isStartedBool
+  const setIsStarted = jest.fn()
+  const isFinished = false
+  const setIsFinished = jest.fn()
+  const setIsWon = jest.fn()
+  
   function MyComponent() {
-
-    const isStarted = isStartedBool
-    const setIsStarted = jest.fn()
-    const isFinished = false
-    const setIsFinished = jest.fn()
-    const setIsWon = jest.fn()
-
     return (<Counter
       timing={timing}
       started={{ isStarted, setIsStarted }}
@@ -25,7 +24,12 @@ function renderCounter(isStartedBool: boolean, timing: RenderCounterProps) {
 
   }
 
-  return render(<MyComponent />);
+  return { 
+    render: render(<MyComponent />),
+    setIsStarted,
+    setIsFinished,
+    setIsWon,
+  };
 }
 
 describe('Ul component', () => {
@@ -37,19 +41,33 @@ describe('Ul component', () => {
   });
 
   it("should only show start-btn", () => {
-    const { queryByTestId } = renderCounter(false, { hours: 0, minutes: 0, seconds: 0 })
+    const { render: {queryByTestId} } = renderCounter(false, { hours: 0, minutes: 0, seconds: 0 })
 
     expect(queryByTestId('hour-value')).toBeNull();
     expect(queryByTestId('minute-value')).toBeNull();
     expect(queryByTestId('second-value')).toBeNull();
-    const startBtn = screen.getByTestId('start-btn');
+    const startBtn = screen.queryByTestId('start-btn');
 
     expect(startBtn).toHaveTextContent('Start');
   })
 
+  it('should update setIsStarted to true on hit start btn', () => {
+    const { 
+      render: {getByTestId}, 
+      setIsStarted 
+    } = renderCounter(false, { hours: 0, minutes: 0, seconds: 0 })
+    const startBtn = screen.getByTestId('start-btn')
+    fireEvent.click(startBtn)
+    setTimeout(() => {
+      expect(getByTestId('start-btn')).toHaveTextContent('Stop');
+      expect(setIsStarted).toBeCalledTimes(1)
+      expect(setIsStarted).toBeCalledWith(true)
+    }, 100)
+  })
+
   it("should render counter's props after start", () => {
     const timing = { hours: 1, minutes: 5, seconds: 55 } 
-    const {getByTestId} = renderCounter(false, timing);
+    const {render: {getByTestId}} = renderCounter(false, timing);
 
     const startBtn = getByTestId('start-btn');
     fireEvent.click(startBtn)
@@ -76,7 +94,7 @@ describe('Ul component', () => {
   })
     
   it('should start counting on hit start btn', () => {
-    const { getByTestId } = renderCounter(false, { hours: 0, minutes: 0, seconds: 0})
+    const { render: {getByTestId} } = renderCounter(false, { hours: 0, minutes: 0, seconds: 0})
     const startBtn = screen.getByTestId('start-btn')
     fireEvent.click(startBtn)
     setTimeout(() => {
