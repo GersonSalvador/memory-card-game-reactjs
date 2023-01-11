@@ -46,7 +46,7 @@ describe('Ul component', () => {
     expect(queryByTestId('hour-value')).toBeNull();
     expect(queryByTestId('minute-value')).toBeNull();
     expect(queryByTestId('second-value')).toBeNull();
-    const startBtn = screen.queryByTestId('start-btn');
+    const startBtn = queryByTestId('start-btn');
 
     expect(startBtn).toHaveTextContent('Start');
   })
@@ -56,12 +56,47 @@ describe('Ul component', () => {
       render: {getByTestId}, 
       setIsStarted 
     } = renderCounter(false, { hours: 0, minutes: 0, seconds: 0 })
+    const startBtn = getByTestId('start-btn')
+    fireEvent.click(startBtn)
+    setTimeout(() => {
+      expect(setIsStarted).toBeCalledTimes(1)
+      expect(setIsStarted).toBeCalledWith(true)
+    }, 100)
+  })
+
+  it('should update setIsStarted to false on hit stop btn', () => {
+    const { 
+      setIsStarted 
+    } = renderCounter(true, { hours: 0, minutes: 0, seconds: 0 })
     const startBtn = screen.getByTestId('start-btn')
     fireEvent.click(startBtn)
     setTimeout(() => {
-      expect(getByTestId('start-btn')).toHaveTextContent('Stop');
       expect(setIsStarted).toBeCalledTimes(1)
-      expect(setIsStarted).toBeCalledWith(true)
+      expect(setIsStarted).toBeCalledWith(false)
+    }, 100)
+  })
+
+  it('should update setIsFinished to true on hit stop btn', () => {
+    const { 
+      setIsFinished 
+    } = renderCounter(true, { hours: 0, minutes: 0, seconds: 0 })
+    const startBtn = screen.getByTestId('start-btn')
+    fireEvent.click(startBtn)
+    setTimeout(() => {
+      expect(setIsFinished).toBeCalledTimes(1)
+      expect(setIsFinished).toBeCalledWith(true)
+    }, 100)
+  })
+
+  it('should update setIsWon to true on hit stop btn', () => {
+    const { 
+      setIsWon 
+    } = renderCounter(true, { hours: 0, minutes: 0, seconds: 0 })
+    const startBtn = screen.getByTestId('start-btn')
+    fireEvent.click(startBtn)
+    setTimeout(() => {
+      expect(setIsWon).toBeCalledTimes(1)
+      expect(setIsWon).toBeCalledWith(true)
     }, 100)
   })
 
