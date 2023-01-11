@@ -29,7 +29,7 @@ describe('Card', () => {
     expect(cardImageElement).toHaveAttribute('src', imgUrl);
   });
 
-  describe('Pair', () => {
+  describe('Update states', () => {
     it('updates the pair state when the card is clicked', () => {
       const setAllCards = jest.fn();
       const setPair = jest.fn();
@@ -194,27 +194,28 @@ describe('Card', () => {
       expect(setPair).not.toHaveBeenCalled();
       expect(setAllCards).not.toHaveBeenCalled();
     });
+    
+    it('should not update the pair and allCards states when the card is clicked and it is hidden', () => {
+      const setAllCards = jest.fn();
+      const setPair = jest.fn();
+      const cardInfo = { cardIndex: 0, isSelected: false, isHidden: true };
+      const wait = false;
+      const setWait = jest.fn();
+      const allCards = [cardInfo];
+      const { getByTestId } = render(<Card
+        cardInfo={cardInfo}
+        cardSequence={0}
+        allCards={allCards}
+        setAllCards={setAllCards}
+        pair={[]}
+        setPair={setPair}
+        waitFn={{wait, setWait}}
+      />);
+      const cardElement = getByTestId('card');
+      fireEvent.click(cardElement);
+      expect(setPair).not.toHaveBeenCalled();
+      expect(setAllCards).not.toHaveBeenCalled();
+    });
   });
 
-  it('should not update the pair and allCards states when the card is clicked and it is hidden', () => {
-    const setAllCards = jest.fn();
-    const setPair = jest.fn();
-    const cardInfo = { cardIndex: 0, isSelected: false, isHidden: true };
-    const wait = false;
-    const setWait = jest.fn();
-    const allCards = [cardInfo];
-    const { getByTestId } = render(<Card
-      cardInfo={cardInfo}
-      cardSequence={0}
-      allCards={allCards}
-      setAllCards={setAllCards}
-      pair={[]}
-      setPair={setPair}
-      waitFn={{wait, setWait}}
-    />);
-    const cardElement = getByTestId('card');
-    fireEvent.click(cardElement);
-    expect(setPair).not.toHaveBeenCalled();
-    expect(setAllCards).not.toHaveBeenCalled();
-  });
 });
