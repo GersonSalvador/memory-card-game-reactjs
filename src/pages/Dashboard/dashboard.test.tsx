@@ -23,6 +23,7 @@ describe('Dashboard Page', () => {
   it('should have 4 levels', () => {
     const {getByTestId} = makeSut()
     const component = getByTestId('levels')
+    expect(component).toBeInTheDocument();
     expect(component.childNodes.length).toEqual(4);
   })
 
