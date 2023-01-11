@@ -43,13 +43,11 @@ export default function Dashboard() {
       pause()
   }, [isFinished])
 
-  const getLevelSelected = () => {
+  useEffect(() => {
     const levelName = levels.filter((l, index) => index === levelSelected)[0].name
     const level = getLevelConfig(levelName)
     setLevelInfo(level)
-  }
-
-  useEffect(getLevelSelected, [levelSelected])
+  }, [levelSelected])
 
   return (
     <div data-testid="dashboard">
