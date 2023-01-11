@@ -38,4 +38,14 @@ describe('Dashboard Page', () => {
     const component = getByTestId('counter')
     expect(component).toBeInTheDocument();
   })
+
+  it('should have 1 Board if isStarted is true', () => {
+    const {queryByTestId, getByTestId} = makeSut()
+    expect(queryByTestId('board')).not.toBeInTheDocument();
+    const startBtn = getByTestId('start-btn')
+    startBtn.click()
+    setTimeout(() => {
+      expect(getByTestId('board')).toBeInTheDocument();
+    }, 100)
+  })
 })
