@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import Dashboard from './';
 
 
@@ -9,14 +9,14 @@ describe('Dashboard Page', () => {
   }
 
   it('renders on screen ', () => {
-    makeSut()
-    const component = screen.getByTestId('dashboard');
+    const {getByTestId} = makeSut()
+    const component = getByTestId('dashboard');
     expect(component).toBeInTheDocument();
   });
 
   it('should have 4 levels', () => {
-    makeSut()
-    const component = screen.getByTestId('levels')
+    const {getByTestId} = makeSut()
+    const component = getByTestId('levels')
     expect(component.childNodes.length).toEqual(4);
   })
 
