@@ -11,14 +11,17 @@ describe('Board component', () => {
   const renderMyComponent = () => {
     const setIsFinished = jest.fn();
     const setIsWon = jest.fn();
+    const setIsStarted = jest.fn();
     return {
       render: render(<Board 
         levelInfo={{pairs: 1, width: 450}}
         setIsFinished={setIsFinished}
         setIsWon={setIsWon}
+        setIsStarted={setIsStarted}
       />),
       setIsFinished,
       setIsWon,
+      setIsStarted,
     };
   }
 
@@ -49,8 +52,13 @@ describe('Board component', () => {
 
   describe('Update States', () => {
 
-    it('should update isFinished to true when all cards are matched', () => {
-      const {render: {getAllByTestId}, setIsFinished} = renderMyComponent();
+    it('should update isFinished, isWon and isStaerted states when all cards are matched', () => {
+      const {
+        render: {getAllByTestId}, 
+        setIsFinished, 
+        setIsWon,
+        setIsStarted,
+      } = renderMyComponent();
       const cards = getAllByTestId('card');
       act(() => {
         cards.forEach(card => {
@@ -60,21 +68,12 @@ describe('Board component', () => {
       setTimeout(() => {
         expect(setIsFinished).toBeCalled(1);
         expect(setIsFinished).toBeCalledWith(true);
+        expect(setIsWon).toBeCalled(1);
+        expect(setIsWon).toBeCalledWith(true);
+        expect(setIsStarted).toBeCalled(1);
+        expect(setIsStarted).toBeCalledWith(false);
       }, 1000);
     });
 
-    it('should update isWon to true when all cards are matched', () => {
-      const {render: {getAllByTestId}, setIsWon} = renderMyComponent();
-      const cards = getAllByTestId('card');
-      act(() => {
-        cards.forEach(card => {
-          card.click();
-        })
-      });
-      setTimeout(() => {
-        expect(setIsWon).toBeCalled(1);
-        expect(setIsWon).toBeCalledWith(true);
-      }, 1000);
-    });
   });
 })
