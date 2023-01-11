@@ -26,4 +26,10 @@ describe('Level component', () => {
     expect(props).toHaveTextContent('easy');
   })
 
+  it('should have 1 children', () => {
+    const {getByTestId} = renderLevels();
+    const component = getByTestId('levels');
+    expect(component.children.length).toBe(1);
+  })
+
 })
