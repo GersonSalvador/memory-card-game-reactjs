@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import { useState } from 'react';
 import Level from '.';
 
 
 function renderLevel() {
-  function LevelRender() {
+  const setLevelSelected = jest.fn()
 
-    const [levelSelected, setLevelSelected] = useState(0)
+  function LevelRender() {
+    const levelSelected = 0
 
     return <Level
       level={{ name: 'easy', pairs: 10, levelSelected, setLevelSelected }}
@@ -14,7 +14,10 @@ function renderLevel() {
       isStarted={false}
     />
   }
-  render(<LevelRender />);
+  return {
+    render: render(<LevelRender />),
+    setLevelSelected,
+  };
 }
 
 describe('Level component', () => {
@@ -36,5 +39,14 @@ describe('Level component', () => {
     const props = screen.getByText('10 pairs');
     expect(props).toHaveTextContent('10 pairs');
   })
+
+  it('shold not call setLevelSelected when isStarted is true', () => {
+    const { setLevelSelected } = renderLevel();
+    const component = screen.getByTestId('level');
+    component.click();
+    setTimeout(() => {
+      expect(setLevelSelected).not.toHaveBeenCalled();
+    }, 1000)
+  });
 
 })
