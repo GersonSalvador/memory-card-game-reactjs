@@ -1,32 +1,28 @@
-import { useState } from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import Levels from '.';
 
 function renderLevels() {
-  function LevelRender() {
+  const levelSelected = 1
+  const setLevelSelected = jest.fn()
 
-    const [levelSelected, setLevelSelected] = useState(0)
-
-    return <Levels
-      levels={[{ name: 'easy', pairs: 10, levelSelected, setLevelSelected }]}
-      isStarted={false}
-    />
-  }
-  render(<LevelRender />);
+  return render(<Levels
+    levels={[{ name: 'easy', pairs: 10, levelSelected, setLevelSelected }]}
+    isStarted={false}
+  />)
 }
 
 describe('Level component', () => {
 
   it('renders on screen', () => {
-    renderLevels();
-    const component = screen.getByTestId('levels');
+    const {getByTestId} = renderLevels();
+    const component = getByTestId('levels');
     expect(component).toBeInTheDocument();
   });
 
   it("should render it's props", () => {
-    renderLevels();
-    const props = screen.getByText('easy');
+    const {getByText} = renderLevels();
+    const props = getByText('easy');
     expect(props).toHaveTextContent('easy');
   })
 
