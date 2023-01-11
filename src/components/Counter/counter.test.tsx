@@ -51,55 +51,6 @@ describe('Ul component', () => {
     expect(startBtn).toHaveTextContent('Start');
   })
 
-  it('should update setIsStarted to true on hit start btn', () => {
-    const { 
-      render: {getByTestId}, 
-      setIsStarted 
-    } = renderCounter(false, { hours: 0, minutes: 0, seconds: 0 })
-    const startBtn = getByTestId('start-btn')
-    fireEvent.click(startBtn)
-    setTimeout(() => {
-      expect(setIsStarted).toBeCalledTimes(1)
-      expect(setIsStarted).toBeCalledWith(true)
-    }, 100)
-  })
-
-  it('should update setIsStarted to false on hit stop btn', () => {
-    const { 
-      setIsStarted 
-    } = renderCounter(true, { hours: 0, minutes: 0, seconds: 0 })
-    const startBtn = screen.getByTestId('start-btn')
-    fireEvent.click(startBtn)
-    setTimeout(() => {
-      expect(setIsStarted).toBeCalledTimes(1)
-      expect(setIsStarted).toBeCalledWith(false)
-    }, 100)
-  })
-
-  it('should update setIsFinished to true on hit stop btn', () => {
-    const { 
-      setIsFinished 
-    } = renderCounter(true, { hours: 0, minutes: 0, seconds: 0 })
-    const startBtn = screen.getByTestId('start-btn')
-    fireEvent.click(startBtn)
-    setTimeout(() => {
-      expect(setIsFinished).toBeCalledTimes(1)
-      expect(setIsFinished).toBeCalledWith(true)
-    }, 100)
-  })
-
-  it('should update setIsWon to true on hit stop btn', () => {
-    const { 
-      setIsWon 
-    } = renderCounter(true, { hours: 0, minutes: 0, seconds: 0 })
-    const startBtn = screen.getByTestId('start-btn')
-    fireEvent.click(startBtn)
-    setTimeout(() => {
-      expect(setIsWon).toBeCalledTimes(1)
-      expect(setIsWon).toBeCalledWith(true)
-    }, 100)
-  })
-
   it("should render counter's props after start", () => {
     const timing = { hours: 1, minutes: 5, seconds: 55 } 
     const {render: {getByTestId}} = renderCounter(false, timing);
@@ -124,7 +75,7 @@ describe('Ul component', () => {
     const startBtn = screen.getByTestId('start-btn');
     fireEvent.click(startBtn)
     setTimeout(() => {
-      expect(startBtn).toHaveTextContent('Stop');
+      expect(screen.getByTestId('start-btn')).toHaveTextContent('Stop');
     }, 100)
   })
     
@@ -142,4 +93,55 @@ describe('Ul component', () => {
     }, 1000)
   })
 
+  describe('Update States', () => {
+
+    it('should update setIsStarted to true on hit start btn', () => {
+      const { 
+        render: {getByTestId}, 
+        setIsStarted 
+      } = renderCounter(false, { hours: 0, minutes: 0, seconds: 0 })
+      const startBtn = getByTestId('start-btn')
+      fireEvent.click(startBtn)
+      setTimeout(() => {
+        expect(setIsStarted).toBeCalledTimes(1)
+        expect(setIsStarted).toBeCalledWith(true)
+      }, 100)
+    })
+
+    it('should update setIsStarted to false on hit stop btn', () => {
+      const { 
+        setIsStarted 
+      } = renderCounter(true, { hours: 0, minutes: 0, seconds: 0 })
+      const startBtn = screen.getByTestId('start-btn')
+      fireEvent.click(startBtn)
+      setTimeout(() => {
+        expect(setIsStarted).toBeCalledTimes(1)
+        expect(setIsStarted).toBeCalledWith(false)
+      }, 100)
+    })
+
+    it('should update setIsFinished to true on hit stop btn', () => {
+      const { 
+        setIsFinished 
+      } = renderCounter(true, { hours: 0, minutes: 0, seconds: 0 })
+      const startBtn = screen.getByTestId('start-btn')
+      fireEvent.click(startBtn)
+      setTimeout(() => {
+        expect(setIsFinished).toBeCalledTimes(1)
+        expect(setIsFinished).toBeCalledWith(true)
+      }, 100)
+    })
+
+    it('should update setIsWon to true on hit stop btn', () => {
+      const { 
+        setIsWon 
+      } = renderCounter(true, { hours: 0, minutes: 0, seconds: 0 })
+      const startBtn = screen.getByTestId('start-btn')
+      fireEvent.click(startBtn)
+      setTimeout(() => {
+        expect(setIsWon).toBeCalledTimes(1)
+        expect(setIsWon).toBeCalledWith(true)
+      }, 100)
+    })
+  })
 })
