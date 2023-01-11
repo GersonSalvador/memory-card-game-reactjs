@@ -32,4 +32,10 @@ describe('Dashboard Page', () => {
     const component = container.querySelector('[data-selected="true"]')
     expect(component).toBeInTheDocument();
   })
+
+  it('should have 1 counter', () => {
+    const {getByTestId} = makeSut()
+    const component = getByTestId('counter')
+    expect(component).toBeInTheDocument();
+  })
 })
