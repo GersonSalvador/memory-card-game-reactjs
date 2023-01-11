@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import Levels from '.';
 
 function renderLevels() {
-  const levelSelected = 1
+  const levelSelected = 0
   const setLevelSelected = jest.fn()
 
   return render(<Levels
