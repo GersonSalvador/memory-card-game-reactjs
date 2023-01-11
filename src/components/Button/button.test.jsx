@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import Button from './';
 
-describe('Ul component', () => {
+describe('Button component', () => {
 
   it('renders on screen', () => {
     render(<Button timing={{hour: 0, minute: 0, second: 0}}/>);
