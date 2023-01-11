@@ -32,4 +32,10 @@ describe('Level component', () => {
     expect(component.children.length).toBe(1);
   })
 
+  it('should have 1 selected level', () => {
+    const { container } = renderLevels()
+    const component = container.querySelector('[data-selected="true"]')
+    expect(component).toBeInTheDocument();
+  })
+
 })
