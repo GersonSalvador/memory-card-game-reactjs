@@ -1,5 +1,3 @@
-import React from "react";
-
 import { ILevels } from "../../interfaces"
 import Level from "./Level";
 
