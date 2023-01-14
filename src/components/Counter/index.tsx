@@ -1,5 +1,4 @@
 import React from "react";
-import { act } from "react-dom/test-utils";
 
 import { Button, Container, LiValue, Li, Ul } from "./styles";
 
@@ -28,16 +27,14 @@ function Counter({
 }: CounterPropos) {
 
   const handleStartClick = () => {
-    act(() => {
-      if(isStarted){
-        setIsStarted(false)
-        setIsFinished(true)
-        setIsWon(false)
-      }else{
-        setIsStarted(true)
-        setIsFinished(false)
-      }
-    })
+    if(isStarted){
+      setIsStarted(false)
+      setIsFinished(true)
+      setIsWon(false)
+    }else{
+      setIsStarted(true)
+      setIsFinished(false)
+    }
   }
   return (
     <>
