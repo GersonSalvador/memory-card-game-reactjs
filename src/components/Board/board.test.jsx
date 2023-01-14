@@ -1,7 +1,6 @@
-import { render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import renderer from 'react-test-renderer'
 import 'jest-styled-components'
-import { act } from 'react-dom/test-utils';
 import Board from './';
 
 describe('Board component', () => {
@@ -52,7 +51,7 @@ describe('Board component', () => {
 
   describe('Update States', () => {
 
-    it('should update isFinished, isWon and isStaerted states when all cards are matched', () => {
+    it('should update isFinished, isWon and isStaerted states when all cards are matched', async () => {
       const {
         render: {getAllByTestId}, 
         setIsFinished, 
@@ -60,19 +59,20 @@ describe('Board component', () => {
         setIsStarted,
       } = renderMyComponent();
       const cards = getAllByTestId('card');
-      act(() => {
-        cards.forEach(card => {
-          card.click();
-        })
+      await act(async () => {
+        cards[0].click();
       });
-      setTimeout(() => {
-        expect(setIsFinished).toBeCalled(1);
-        expect(setIsFinished).toBeCalledWith(true);
-        expect(setIsWon).toBeCalled(1);
-        expect(setIsWon).toBeCalledWith(true);
-        expect(setIsStarted).toBeCalled(1);
-        expect(setIsStarted).toBeCalledWith(false);
-      }, 1000);
+      expect(setIsFinished).toHaveBeenCalledTimes(0)
+      await act(async () => {
+        cards[1].click();
+        await new Promise((r) => setTimeout(r, 1100));
+      });
+      expect(setIsFinished).toBeCalledWith(true);
+      expect(setIsFinished).toHaveBeenCalledTimes(1)
+      expect(setIsWon).toBeCalledWith(true);
+      expect(setIsWon).toHaveBeenCalledTimes(1);
+      expect(setIsStarted).toHaveBeenCalledTimes(1);
+      expect(setIsStarted).toBeCalledWith(false);
     });
 
   });
