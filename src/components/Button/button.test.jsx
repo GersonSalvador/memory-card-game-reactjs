@@ -4,14 +4,14 @@ import Button from './';
 describe('Button component', () => {
 
   it('renders on screen', () => {
-    render(<Button timing={{hour: 0, minute: 0, second: 0}}/>);
+    render(<Button dataTestId='btn'/>);
     const component = screen.getByTestId('btn');
     expect(component).toBeInTheDocument();
   });
 
   it("should render it's children", () => {
     const btnText = "Button Text"
-    render(<Button>{btnText}</Button>);
+    render(<Button dataTestId='btn'>{btnText}</Button>);
 
     const component = screen.getByTestId('btn');
 
