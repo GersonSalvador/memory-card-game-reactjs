@@ -35,7 +35,7 @@ export default function Card({img, pair, setPair, cardInfo, cardSequence, allCar
     setAllCards(changedCards)
   }
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if(wait || isSelected || isHidden)
       return
     if(pair.length === 0){
@@ -46,14 +46,13 @@ export default function Card({img, pair, setPair, cardInfo, cardSequence, allCar
       setWait(true)
       const pairIndex = allCards[pair[0]].cardIndex
       changeCardsInfo([cardSequence], {isSelected: true})
-      setTimeout(() => {
-        if(pairIndex === cardIndex)
-          changeCardsInfo([...pair, cardSequence], {isSelected: true, isHidden: true})
-        else
-          changeCardsInfo([...pair, cardSequence], {isSelected: false})
-        setPair([])
-        setWait(false)
-      }, 1000)
+      await new Promise((r) => setTimeout(r, 1100));
+      if(pairIndex === cardIndex)
+        changeCardsInfo([...pair, cardSequence], {isSelected: true, isHidden: true})
+      else
+        changeCardsInfo([...pair, cardSequence], {isSelected: false})
+      setPair([])
+      setWait(false)
     }
   }
 
