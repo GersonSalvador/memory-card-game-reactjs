@@ -1,6 +1,5 @@
-import { render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import Dashboard from './';
-
 
 describe('Dashboard Page', () => {
 
@@ -40,12 +39,30 @@ describe('Dashboard Page', () => {
   })
 
   it('should have 1 Board if isStarted is true', () => {
-    const {queryByTestId, getByTestId} = makeSut()
-    expect(queryByTestId('board')).not.toBeInTheDocument();
+    const {queryByTestId, getByTestId} = makeSut();
     const startBtn = getByTestId('start-btn')
-    startBtn.click()
-    setTimeout(() => {
-      expect(getByTestId('board')).toBeInTheDocument();
-    }, 100)
+    expect(queryByTestId('board')).not.toBeInTheDocument();
+    act(() => {
+      startBtn.click()
+    })
+    expect(queryByTestId('board')).toBeInTheDocument();
+    act(() => {
+      startBtn.click()
+    })
+    expect(queryByTestId('board')).not.toBeInTheDocument();
+  })
+
+  it('should have 1 MessageDisplay if isFinished is true', async () => {
+    const {queryByTestId, getByTestId} = makeSut();
+    expect(queryByTestId('message-container')).not.toBeInTheDocument();
+    const startBtn = getByTestId('start-btn')
+    act(() => {
+      startBtn.click()
+    })
+    expect(queryByTestId('message-container')).not.toBeInTheDocument();
+    act(() => {
+      startBtn.click()
+    })
+    expect(queryByTestId('message-container')).toBeInTheDocument();
   })
 })
