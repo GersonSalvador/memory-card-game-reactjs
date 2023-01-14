@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import Card from './';
 
 describe('Card', () => {
@@ -189,11 +189,13 @@ describe('Card', () => {
         setPair={setPair}
         waitFn={{wait, setWait}}
       />);
-      const cardElement = getByTestId('card');
-      fireEvent.click(cardElement);
-      expect(setPair).not.toHaveBeenCalled();
-      expect(setAllCards).not.toHaveBeenCalled();
-    });
+      act(() => {
+        })
+        const cardElement = getByTestId('card');
+        fireEvent.click(cardElement);
+        expect(setPair).not.toHaveBeenCalled();
+        expect(setAllCards).not.toHaveBeenCalled();
+      });
     
     it('should not update the pair and allCards states when the card is clicked and it is hidden', () => {
       const setAllCards = jest.fn();
