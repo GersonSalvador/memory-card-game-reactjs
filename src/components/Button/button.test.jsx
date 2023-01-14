@@ -19,4 +19,12 @@ describe('Button component', () => {
     expect(component).toHaveTextContent(btnText);
   })
 
+  it('should call clickHandler function on click', () => {
+    const handler = jest.fn()
+    const {getByTestId} = render(<Button dataTestId='btn' clickHandler={handler}/>);
+    const btn = getByTestId('btn');
+    btn.click()
+    expect(handler).toHaveBeenCalledTimes(1)
+  })
+
 })
