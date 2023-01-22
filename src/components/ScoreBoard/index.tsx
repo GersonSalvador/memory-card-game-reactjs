@@ -1,23 +1,46 @@
 import React from "react";
 import { Iscore } from "../../utils/handleStoredScores";
-import { Container } from "./styles";
+import { 
+  Container, 
+  Title, 
+  List, 
+  ListItem,
+  Position,
+  Name,
+  Time,
+} from "./styles";
 
 interface IScoreBoard{
   scores: Iscore[];
+}
+interface IhandleTime{
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+const handleTime = ({hours, minutes, seconds}: IhandleTime) => {
+  return {
+    hours: `${hours}`.padStart(2, '0'),
+    minutes: `${minutes}`.padStart(2, '0'),
+    seconds: `${seconds}`.padStart(2, '0'),
+  }
 }
 
 export default function ScoreBoard({scores}: IScoreBoard) {
   return (
     <Container data-testid="score-board">
-      <h1>Score Board</h1>
-      <ul>
-        {scores.map(({player, time:{hours, minutes, seconds}}, index) => (
-          <li key={index} data-testid="score">
-            <span>{player}</span>
-            <span>{hours}:{minutes}:{seconds}</span>
-          </li>
-        ))}
-      </ul>
+      <Title>Score Board</Title>
+      <List>
+        {scores.map(({player, time}, index) => {
+          const {hours, minutes, seconds} = handleTime(time);
+          return <ListItem key={index} data-testid="score">
+            <Position>{++index}</Position>
+            <Name>{player}</Name>
+            <Time>{hours}:{minutes}:{seconds}</Time>
+          </ListItem>
+        })}
+      </List>
     </Container>
   )
 }
