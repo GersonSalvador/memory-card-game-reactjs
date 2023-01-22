@@ -16,5 +16,5 @@ export const Title = styled.h1<H1Props>`
 export const Message = styled.h3`
   font-size: 1.17em;
   font-weight: 400;
-  color: #fff;
+  color: var(--main-5);
 `;

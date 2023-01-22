@@ -13,6 +13,7 @@ export default createGlobalStyle`
     --main-3: #B84BFF;
     --main-4: #6B4C7F;
     --main-5: #933CCC;
+    --main-text: #fff;
   }
 
   html,body{

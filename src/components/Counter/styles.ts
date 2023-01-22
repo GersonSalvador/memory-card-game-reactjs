@@ -16,7 +16,7 @@ export const Li = styled.li`
   flex-direction: column;
   padding: 20px;
   flex-grow: 1;
-  color: #fff;
+  color: var(--main-5);
   border: 1px solid var(--main-2);
   transition: all 0.8s ease-in;
 
@@ -30,7 +30,7 @@ export const Button = styled.button`
   border: none;
   outline: none;
   background: none;
-  color: #FFF;
+  color: var(--main-5);
   text-transform: uppercase;
   font-size: large;
   cursor: pointer;
