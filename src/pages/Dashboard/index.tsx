@@ -6,6 +6,9 @@ import Board from "../../components/Board";
 import {getLevelConfig} from "../../utils/getLevelConfig";
 import { ILevels } from "../../interfaces"
 import MessageDisplay from "../../components/MessageDisplay";
+import { Iscore } from "../../utils/handleStoredScores";
+import ScoreBoard from "../../components/ScoreBoard";
+import { Wrapper } from "./styles";
 
 export default function Dashboard() {
 
@@ -14,6 +17,7 @@ export default function Dashboard() {
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [isWon, setIsWon] = useState(false);
+  const [scores, setScores] = useState<Iscore[]>([])
 
   const levels: ILevels[] = [
     { name: 'easy', pairs: 6, levelSelected, setLevelSelected },
@@ -41,6 +45,8 @@ export default function Dashboard() {
   useEffect(() => {
     if(isFinished)
       pause()
+    if(isWon)
+      setScores(prev => [...prev, {player: 'Fake Name', time: {hours, minutes, seconds}}])
   }, [isFinished])
 
   useEffect(() => {
@@ -54,22 +60,27 @@ export default function Dashboard() {
       <Header>
         Memory Game
       </Header>
-      <Main>
-        <Levels levels={levels} isStarted={isStarted} />
-        <Counter
-          timing={{ hours, minutes, seconds }}
-          started={{ isStarted, setIsStarted }}
-          finished={{ isFinished, setIsFinished }}
-          setIsWon={setIsWon}
-          />
-        {isStarted && <Board 
-          levelInfo={levelInfo}
-          setIsFinished={setIsFinished}
-          setIsWon={setIsWon}
-          setIsStarted={setIsStarted}
-        />}
-        {isFinished && <MessageDisplay won={isWon} />}
-      </Main>
+      <Wrapper>
+        <Main>
+          <Levels levels={levels} isStarted={isStarted} />
+          <Counter
+            timing={{ hours, minutes, seconds }}
+            started={{ isStarted, setIsStarted }}
+            finished={{ isFinished, setIsFinished }}
+            setIsWon={setIsWon}
+            />
+          {isStarted && <Board 
+            levelInfo={levelInfo}
+            setIsFinished={setIsFinished}
+            setIsWon={setIsWon}
+            setIsStarted={setIsStarted}
+          />}
+          {isFinished && <MessageDisplay won={isWon} />}
+        </Main>
+        <ScoreBoard 
+          scores={scores}
+        />
+      </Wrapper>
     </div>
   )
 }
