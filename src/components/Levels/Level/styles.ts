@@ -13,7 +13,7 @@ export const Container = styled.li<liProps>`
   flex-direction: column;
   padding: 20px;
   flex-grow: 1;
-  color: var(--main-5);
+  color: var(--main-text);
   border: 1px solid var(--main-2);
   transition: all 0.8s ease-in;
   display: block;
