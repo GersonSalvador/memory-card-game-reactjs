@@ -1,20 +1,23 @@
-import { useEffect } from "react";
+import React from "react";
+import { Iscore } from "../../utils/handleStoredScores";
 import { Container } from "./styles";
 
 interface IScoreBoard{
-  isStarted: boolean;
-  isWon: boolean;
-  time: {
-    seconds: number;
-    minutes: number;
-    hours: number;
-  }
+  scores: Iscore[];
 }
 
-export default function ScoreBoard({isStarted, isWon, time}: IScoreBoard) {
-  useEffect(() => {
-    const {seconds, minutes, hours} = time
-    console.log({isWon, isStarted, seconds, minutes, hours})
-  }, [isStarted, isWon])
-  return (<Container data-testid="score-board"/>)
+export default function ScoreBoard({scores}: IScoreBoard) {
+  return (
+    <Container data-testid="score-board">
+      <h1>Score Board</h1>
+      <ul>
+        {scores.map(({player, time:{hours, minutes, seconds}}, index) => (
+          <li key={index} data-testid="score">
+            <span>{player}</span>
+            <span>{hours}:{minutes}:{seconds}</span>
+          </li>
+        ))}
+      </ul>
+    </Container>
+  )
 }
