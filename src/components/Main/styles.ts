@@ -14,4 +14,5 @@ export const Section = styled.section`
   align-items: flex-start;
   justify-content: center;
   position: relative;
+  width: 80vw;
 `;
