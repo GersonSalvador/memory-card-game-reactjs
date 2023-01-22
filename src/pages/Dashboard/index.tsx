@@ -6,7 +6,7 @@ import Board from "../../components/Board";
 import {getLevelConfig} from "../../utils/getLevelConfig";
 import { ILevels } from "../../interfaces"
 import MessageDisplay from "../../components/MessageDisplay";
-import { Iscore } from "../../utils/handleStoredScores";
+import handleStoredScores, { Iscore } from "../../utils/handleStoredScores";
 import ScoreBoard from "../../components/ScoreBoard";
 import { Wrapper } from "./styles";
 
@@ -45,8 +45,13 @@ export default function Dashboard() {
   useEffect(() => {
     if(isFinished)
       pause()
-    if(isWon)
+    if(isWon && (hours > 0 || minutes > 0 || seconds > 0)){
       setScores(prev => [...prev, {player: 'Fake Name', time: {hours, minutes, seconds}}])
+      setTimeout(() => {
+        handleStoredScores.set(scores)
+        reset()
+      }, 100)
+    }
   }, [isFinished])
 
   useEffect(() => {
@@ -54,6 +59,11 @@ export default function Dashboard() {
     const level = getLevelConfig(levelName)
     setLevelInfo(level)
   }, [levelSelected])
+
+  useEffect(() => {
+    const scores = handleStoredScores.get()
+    setScores(scores)
+  }, [])
 
   return (
     <div data-testid="dashboard">
