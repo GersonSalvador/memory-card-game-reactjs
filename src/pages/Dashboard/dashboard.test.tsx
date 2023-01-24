@@ -1,10 +1,16 @@
 import { render, act } from '@testing-library/react';
+
 import Dashboard from './';
+import ErrorBoundary from '../../components/ErrorBoundary';
 
 describe('Dashboard Page', () => {
 
   function makeSut() {
-    return render(<Dashboard />);
+    return render(
+      <ErrorBoundary >
+        <Dashboard />
+      </ErrorBoundary>
+    );
   }
 
   it('renders on screen ', () => {
